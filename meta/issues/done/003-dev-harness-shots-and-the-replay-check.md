@@ -1,10 +1,10 @@
 # [003] Dev harness: shots and the replay check
 
-**Status:** open
+**Status:** done
 **Milestone:** M0
 **Depends on:** [002]
 **Created:** 2026-11-10
-**Closed:** -
+**Closed:** 2026-11-10
 
 ## Problem
 An agent cannot look at a window or play a run. It needs a picture of each screen
