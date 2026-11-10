@@ -1,0 +1,29 @@
+{
+  "provider": "pixellab",
+  "endpoint": "https://api.pixellab.ai/v2/remove-background",
+  "request": {
+    "image_size": {
+      "width": 256,
+      "height": 256
+    },
+    "image": "art-src/raw/icon-pixel.png"
+  },
+  "answer": {
+    "usage": {
+      "type": "generations",
+      "generations": 1.0
+    },
+    "image": {
+      "saved_image": 0
+    }
+  },
+  "usage": {
+    "type": "generations",
+    "generations": 1.0
+  },
+  "files": [
+    "icon.png"
+  ],
+  "elapsed_s": 13.5,
+  "created": "2026-11-10T19:50:00+0100"
+}

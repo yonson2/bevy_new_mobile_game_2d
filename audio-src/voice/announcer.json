@@ -1,0 +1,25 @@
+{
+  "provider": "elevenlabs",
+  "endpoint": "/v1/text-to-voice/design",
+  "request": {
+    "voice_description": "Cheerful retro arcade announcer robot, bright metallic voice, playful and energetic, light vocoder effect",
+    "model_id": "eleven_ttv_v3",
+    "auto_generate_text": true
+  },
+  "text": "Alright, players! [chuckles] Get ready to power up! This next game is a classic, a real high-score challenge! Remember, practice makes perfect, and every coin counts! [energetic beep] Don't forget to check out the leaderboard! Can you beat the current champion? I bet you can! Let's get those joysticks moving!",
+  "previews": [
+    {
+      "file": "announcer-1.mp3",
+      "generated_voice_id": "Vi4XbpZ2tKc5sfJ4Hzkv"
+    },
+    {
+      "file": "announcer-2.mp3",
+      "generated_voice_id": "yhzoSGtTT5Zn5FGSYaF9"
+    },
+    {
+      "file": "announcer-3.mp3",
+      "generated_voice_id": "o2H7OGvFcaYZQIlrhmhM"
+    }
+  ],
+  "created": "2026-11-10T19:46:31+0100"
+}

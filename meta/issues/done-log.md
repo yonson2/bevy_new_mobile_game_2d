@@ -2,6 +2,7 @@
 
 Every closed issue, newest first. `tools/issues.py` writes this file.
 
+- [007] M0: The demo's art and sound through the asset tools (2026-11-10)
 - [006] M0: Asset tools and the model investigation (2026-11-10)
 - [005] M0: CI and the checks: fmt, clippy, tests, replay, issues, doc sizes (2026-11-10)
 - [004] M0: Phones: iOS and Android projects, the app's identity in one place (2026-11-10)

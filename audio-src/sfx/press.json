@@ -1,0 +1,19 @@
+{
+  "provider": "elevenlabs",
+  "endpoint": "/v1/sound-generation",
+  "request": {
+    "text": "short soft UI button click, dry, no reverb",
+    "model_id": "eleven_text_to_sound_v3",
+    "prompt_influence": 0.6,
+    "loop": false,
+    "duration_seconds": 0.5
+  },
+  "output_format": "wav_48000",
+  "file": "press.wav",
+  "headers": {
+    "character-cost": "6",
+    "content-type": "audio/wav"
+  },
+  "elapsed_s": 1.6,
+  "created": "2026-11-10T19:46:21+0100"
+}

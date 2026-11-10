@@ -1,0 +1,94 @@
+{
+  "provider": "pixellab",
+  "endpoint": "https://api.pixellab.ai/v2/animate-pixminimax",
+  "request": {
+    "description": "bobs gently up and down in place, antennae wiggle, the eye blinks once",
+    "frame_count": 8,
+    "no_background": true,
+    "view": "side",
+    "direction": "south",
+    "subject_description": "a round orange robot with one big cyan eye",
+    "first_frame": "art-src/sprites/player.png"
+  },
+  "answer": {
+    "submitted": {
+      "usage": null,
+      "background_job_id": "94e59c53-82da-45d3-bfcc-e7f4bf04bd4e",
+      "status": "processing",
+      "enhanced_prompt": null,
+      "enhance_usage": null
+    },
+    "job": {
+      "usage": {
+        "type": "generations",
+        "generations": 1.0
+      },
+      "id": "94e59c53-82da-45d3-bfcc-e7f4bf04bd4e",
+      "status": "completed",
+      "created_at": "2026-11-10T18:46:19.666535+00:00",
+      "last_response": {
+        "seed": 3229522358,
+        "type": "message_progress",
+        "action": "finalizing",
+        "images": [
+          {
+            "saved_image": 0
+          },
+          {
+            "saved_image": 1
+          },
+          {
+            "saved_image": 2
+          },
+          {
+            "saved_image": 3
+          },
+          {
+            "saved_image": 4
+          },
+          {
+            "saved_image": 5
+          },
+          {
+            "saved_image": 6
+          },
+          {
+            "saved_image": 7
+          },
+          {
+            "saved_image": 8
+          }
+        ],
+        "status": "initializing",
+        "progress": 1.0,
+        "flow_kind": "animation",
+        "billing_usage": {
+          "usd": 0.0,
+          "type": "generations",
+          "generations": 1
+        },
+        "generation_id": "dae813f4-f967-4b43-834a-4493d3f290c4",
+        "queue_position": 0,
+        "billing_charged": true,
+        "generation_started_at": "2026-11-10T18:46:19.714731+00:00",
+        "estimated_wait_seconds": 0
+      }
+    }
+  },
+  "usage": {
+    "type": "generations",
+    "generations": 1.0
+  },
+  "files": [
+    "player-idle-1.png",
+    "player-idle-2.png",
+    "player-idle-3.png",
+    "player-idle-4.png",
+    "player-idle-5.png",
+    "player-idle-6.png",
+    "player-idle-7.png",
+    "player-idle-8.png"
+  ],
+  "elapsed_s": 42.2,
+  "created": "2026-11-10T19:47:01+0100"
+}

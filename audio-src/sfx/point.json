@@ -1,0 +1,19 @@
+{
+  "provider": "elevenlabs",
+  "endpoint": "/v1/sound-generation",
+  "request": {
+    "text": "bright short retro game coin blip, one rising chime",
+    "model_id": "eleven_text_to_sound_v3",
+    "prompt_influence": 0.6,
+    "loop": false,
+    "duration_seconds": 0.5
+  },
+  "output_format": "wav_48000",
+  "file": "point.wav",
+  "headers": {
+    "character-cost": "6",
+    "content-type": "audio/wav"
+  },
+  "elapsed_s": 1.4,
+  "created": "2026-11-10T19:46:20+0100"
+}

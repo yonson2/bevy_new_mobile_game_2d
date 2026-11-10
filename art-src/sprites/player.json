@@ -1,0 +1,34 @@
+{
+  "provider": "pixellab",
+  "endpoint": "https://api.pixellab.ai/v2/create-image-pixen",
+  "request": {
+    "description": "cute round robot with one big cyan eye and two small antennae, front view, chunky silhouette",
+    "image_size": {
+      "width": 32,
+      "height": 32
+    },
+    "no_background": true,
+    "outline": "single color black outline",
+    "detail": "low detail"
+  },
+  "answer": {
+    "usage": {
+      "type": "generations",
+      "generations": 1.0
+    },
+    "image": {
+      "saved_image": 0
+    },
+    "enhanced_prompt": null,
+    "enhance_usage": null
+  },
+  "usage": {
+    "type": "generations",
+    "generations": 1.0
+  },
+  "files": [
+    "player.png"
+  ],
+  "elapsed_s": 46.1,
+  "created": "2026-11-10T19:45:46+0100"
+}
