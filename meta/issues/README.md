@@ -18,7 +18,6 @@ Next ID: 013
 ## Open (priority order)
 
 <!-- issues:open -->
-- [006] M0: Asset tools and the model investigation
 - [007] M0: The demo's art and sound through the asset tools
 - [008] M0: Live docs: AGENTS.md, ARCHITECTURE.md, README.md, docs/
 - [009] M0: Seeded game issues: the interview and the milestone spine

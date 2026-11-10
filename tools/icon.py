@@ -10,7 +10,9 @@ or more. The background is one flat colour.
   background colour. A launcher's mask always keeps the middle 66 dp circle of the 108 dp
   layer: the subject goes into that circle's square.
 
-Usage: tools/icon.py [--background '#1b1f2a'] [--share 0.8]
+Usage: tools/icon.py [--background '#1b1f2a'] [--share 0.8] [--pixel]
+
+--pixel: the source is pixel art; it scales with hard pixels.
 Needs Pillow.
 """
 import argparse
@@ -26,11 +28,11 @@ ANDROID_RES = ROOT / "mobile/android/app/src/main/res"
 DENSITIES = {"mdpi": 108, "hdpi": 162, "xhdpi": 216, "xxhdpi": 324, "xxxhdpi": 432}
 
 
-def layer(subject, px, share):
+def layer(subject, px, share, sampling):
     """The subject in the middle of a clear `px` square, `share` of its side."""
     inner = round(px * share)
     out = Image.new("RGBA", (px, px), (0, 0, 0, 0))
-    out.alpha_composite(subject.resize((inner, inner), Image.LANCZOS), ((px - inner) // 2,) * 2)
+    out.alpha_composite(subject.resize((inner, inner), sampling), ((px - inner) // 2,) * 2)
     return out
 
 
@@ -38,14 +40,16 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--background", default="#1b1f2a", help="the colour behind the subject")
     parser.add_argument("--share", type=float, default=0.8, help="the subject's share of the iOS icon's side")
+    parser.add_argument("--pixel", action="store_true", help="scale with hard pixels")
     args = parser.parse_args()
+    sampling = Image.NEAREST if args.pixel else Image.LANCZOS
     ground = tuple(bytes.fromhex(args.background.lstrip("#")))
     subject = Image.open(SOURCE).convert("RGBA")
     if subject.width != subject.height:
         raise SystemExit(f"{SOURCE.relative_to(ROOT)} is not square: {subject.size}")
 
     ios = Image.new("RGBA", (1024, 1024), ground + (255,))
-    ios.alpha_composite(layer(subject, 1024, args.share))
+    ios.alpha_composite(layer(subject, 1024, args.share, sampling))
     IOS.parent.mkdir(parents=True, exist_ok=True)
     ios.convert("RGB").save(IOS)
 
@@ -56,8 +60,8 @@ def main():
     for density, px in DENSITIES.items():
         folder = ANDROID_RES / f"mipmap-{density}"
         folder.mkdir(parents=True, exist_ok=True)
-        layer(subject, px, safe).save(folder / "ic_launcher_foreground.png")
-        layer(white, px, safe).save(folder / "ic_launcher_monochrome.png")
+        layer(subject, px, safe, sampling).save(folder / "ic_launcher_foreground.png")
+        layer(white, px, safe, sampling).save(folder / "ic_launcher_monochrome.png")
     values = ANDROID_RES / "values/ic_launcher_background.xml"
     values.parent.mkdir(parents=True, exist_ok=True)
     values.write_text(
