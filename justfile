@@ -105,3 +105,7 @@ ios-archive *cargo_args:
 # /usr/bin first: the export runs /usr/bin/rsync, which fails if it finds Homebrew's rsync.
 ios-upload *cargo_args: (ios-archive cargo_args)
     PATH="/usr/bin:$PATH" xcodebuild -quiet -exportArchive -archivePath target/ios/Game.xcarchive -exportOptionsPlist {{ios_dir}}/ExportOptions.plist -exportPath target/ios/export -allowProvisioningUpdates
+
+# The issue board (tracker/): a local web page of the tracker. Needs Node.
+board:
+    cd tracker && npm install --silent && npm run dev

@@ -1,0 +1,81 @@
+---
+import type { Issue } from '../lib/issues';
+
+interface Props {
+  issue: Issue;
+  byId: Map<string, Issue>;
+}
+
+const { issue, byId } = Astro.props;
+---
+
+<li class="row" data-status={issue.status}>
+  <a class="name" href={`/issues/${issue.id}/`}>
+    <b>{issue.id}</b>
+    {issue.title}
+  </a>
+  <span class="meta muted">
+    {issue.milestone && <span class="mark">{issue.milestone}</span>}
+    {issue.gate && <span class="mark gate">gate</span>}
+    {issue.ownerRun && <span class="mark owner">owner-run</span>}
+    {
+      issue.dependsOn.length > 0 && (
+        <span>
+          needs
+          {issue.dependsOn.map((id) =>
+            byId.has(id) ? (
+              <a class="dep" href={`/issues/${id}/`} data-status={byId.get(id)!.status}>
+                {id}
+              </a>
+            ) : (
+              <span class="dep">{id}</span>
+            ),
+          )}
+        </span>
+      )
+    }
+    {issue.closed && <time>{issue.closed}</time>}
+  </span>
+</li>
+
+<style>
+  .row {
+    padding: 10px 12px;
+    border-left: 3px solid var(--accent);
+  }
+
+  .row + .row {
+    border-top: 1px solid var(--line);
+  }
+
+  .name {
+    display: block;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .name:hover {
+    text-decoration: underline;
+  }
+
+  .name b {
+    margin-right: 6px;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 10px;
+    margin-top: 4px;
+  }
+
+  /* A dependency has the colour of its status. */
+  .dep {
+    margin-left: 6px;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+</style>

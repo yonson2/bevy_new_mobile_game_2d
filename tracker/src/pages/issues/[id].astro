@@ -1,0 +1,186 @@
+---
+import { getCollection, render } from 'astro:content';
+import Shell from '../../layouts/shell.astro';
+import { LABEL, loadBoard } from '../../lib/board';
+import type { Issue } from '../../lib/issues';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('issues');
+  return entries.map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const issue = entry.data as Issue;
+const board = await loadBoard();
+
+const milestone = board.milestones.find((row) => row.code === issue.milestone);
+const links = [
+  { title: 'Depends on', ids: issue.dependsOn },
+  { title: 'Required by', ids: (board.requiredBy.get(issue.id) ?? []).map((other) => other.id) },
+];
+---
+
+<Shell title={`[${issue.id}] ${issue.title}`}>
+  <article data-status={issue.status}>
+    <p class="marks">
+      <span class="mark">{LABEL[issue.status]}</span>
+      {issue.gate && <span class="mark gate">gate</span>}
+      {issue.ownerRun && <span class="mark owner">owner-run</span>}
+    </p>
+    <h1><span class="id">{issue.id}</span> {issue.title}</h1>
+
+    <dl>
+      <div>
+        <dt>Milestone</dt>
+        <dd>
+          {issue.milestone ? <a href={`/#${issue.milestone}`}>{issue.milestone}</a> : '-'}
+          {' '}
+          {milestone?.name}
+        </dd>
+      </div>
+      <div>
+        <dt>Created</dt>
+        <dd>{issue.created || '-'}</dd>
+      </div>
+      <div>
+        <dt>Closed</dt>
+        <dd>{issue.closed || '-'}</dd>
+      </div>
+      {
+        links.map((link) => (
+          <div class="wide">
+            <dt>{link.title}</dt>
+            {link.ids.length === 0 && <dd>-</dd>}
+            {link.ids.map((id) => {
+              const other = board.byId.get(id);
+              return other === undefined ? (
+                <dd>{id} (no such issue)</dd>
+              ) : (
+                <dd data-status={other.status}>
+                  <a href={`/issues/${id}/`}>
+                    <b>{id}</b> {other.title}
+                  </a>
+                  <span class="mark">{LABEL[other.status]}</span>
+                </dd>
+              );
+            })}
+          </div>
+        ))
+      }
+    </dl>
+
+    <div class="body">
+      <Content />
+    </div>
+
+    <p class="muted">Source: <code>{board.dir}/{issue.status}/{issue.file}</code></p>
+  </article>
+</Shell>
+
+<style>
+  .marks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 8px 0 0;
+  }
+
+  h1 {
+    margin: 8px 0 16px;
+    font-size: 24px;
+    line-height: 1.25;
+  }
+
+  .id {
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+
+  dl {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px 16px;
+    margin: 0;
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--panel);
+  }
+
+  .wide {
+    grid-column: 1 / -1;
+  }
+
+  dt {
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  dd {
+    margin: 2px 0 0;
+  }
+
+  dd a {
+    margin-right: 6px;
+  }
+
+  dd b {
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .body {
+    margin: 24px 0;
+    overflow-wrap: break-word;
+  }
+
+  .body :global(h2) {
+    margin: 28px 0 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--line);
+    font-size: 18px;
+  }
+
+  .body :global(ul),
+  .body :global(ol) {
+    padding-left: 24px;
+  }
+
+  .body :global(li) {
+    margin-bottom: 6px;
+  }
+
+  .body :global(:not(pre) > code) {
+    padding: 1px 4px;
+    border-radius: 4px;
+    background: var(--panel);
+  }
+
+  .body :global(pre) {
+    overflow-x: auto;
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+
+  .body :global(table) {
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+  }
+
+  .body :global(th),
+  .body :global(td) {
+    padding: 4px 10px;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+  }
+
+  .body :global(blockquote) {
+    margin: 12px 0;
+    padding-left: 12px;
+    border-left: 3px solid var(--line);
+    color: var(--muted);
+  }
+</style>
