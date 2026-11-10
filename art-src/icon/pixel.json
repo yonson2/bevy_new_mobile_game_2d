@@ -1,0 +1,33 @@
+{
+  "provider": "pixellab",
+  "endpoint": "https://api.pixellab.ai/v2/image-to-pixelart",
+  "request": {
+    "image_size": {
+      "width": 1024,
+      "height": 1024
+    },
+    "output_size": {
+      "width": 256,
+      "height": 256
+    },
+    "image": "art-src/raw/icon-concept-2-1024.png"
+  },
+  "answer": {
+    "usage": {
+      "type": "generations",
+      "generations": 1.0
+    },
+    "image": {
+      "saved_image": 0
+    }
+  },
+  "usage": {
+    "type": "generations",
+    "generations": 1.0
+  },
+  "files": [
+    "pixel.png"
+  ],
+  "elapsed_s": 26.8,
+  "created": "2026-11-10T19:49:46+0100"
+}

@@ -1,0 +1,5 @@
+# The replay check's hashes (tools/replay.sh). One line per seed: the seed and its
+# GAME_STATE hash after the scripted run's fixed steps.
+1 30409424892da8e8
+2 97663b08cf87b84e
+3 c8e60c7d9a734fbc

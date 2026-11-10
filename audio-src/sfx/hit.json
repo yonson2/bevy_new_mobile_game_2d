@@ -1,0 +1,19 @@
+{
+  "provider": "elevenlabs",
+  "endpoint": "/v1/sound-generation",
+  "request": {
+    "text": "crunchy retro arcade explosion impact with a short low thud",
+    "model_id": "eleven_text_to_sound_v3",
+    "prompt_influence": 0.5,
+    "loop": false,
+    "duration_seconds": 1.0
+  },
+  "output_format": "wav_48000",
+  "file": "hit.wav",
+  "headers": {
+    "character-cost": "11",
+    "content-type": "audio/wav"
+  },
+  "elapsed_s": 1.3,
+  "created": "2026-11-10T19:46:20+0100"
+}

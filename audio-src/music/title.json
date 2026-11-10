@@ -1,0 +1,18 @@
+{
+  "provider": "elevenlabs",
+  "endpoint": "/v1/music",
+  "request": {
+    "prompt": "Calm warm chiptune title theme, 100 BPM, C major, soft square lead, gentle arpeggios, seamless loop, instrumental only",
+    "model_id": "music_v2_5",
+    "music_length_ms": 30000,
+    "force_instrumental": true,
+    "generation_mode": "loop"
+  },
+  "output_format": "mp3_44100_192",
+  "file": "title.mp3",
+  "headers": {
+    "content-type": "audio/mpeg"
+  },
+  "elapsed_s": 5.9,
+  "created": "2026-11-10T19:46:25+0100"
+}

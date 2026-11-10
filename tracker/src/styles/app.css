@@ -1,0 +1,88 @@
+/* A neutral dark theme. One column, so it fits a phone. */
+
+:root {
+  --bg: #111318;
+  --panel: #1a1d24;
+  --line: #2c313c;
+  --text: #e4e7ec;
+  --muted: #9aa2b1;
+  --link: #8fc1ff;
+
+  /* One colour for each status. */
+  --open: #7ab7ff;
+  --active: #f0b455;
+  --done: #6fcf97;
+
+  --radius: 6px;
+  color-scheme: dark;
+}
+
+[data-status='open'] {
+  --accent: var(--open);
+}
+[data-status='active'] {
+  --accent: var(--active);
+}
+[data-status='done'] {
+  --accent: var(--done);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+a {
+  color: var(--link);
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9em;
+}
+
+.wrap {
+  max-width: 860px;
+  margin-inline: auto;
+  padding: 16px;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* A small label: the status, the milestone, gate, owner-run. */
+.mark {
+  display: inline-block;
+  padding: 0 8px;
+  border: 1px solid var(--accent, var(--line));
+  border-radius: 999px;
+  color: var(--accent, var(--muted));
+  font-size: 12px;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+.mark.gate {
+  --accent: #d6a4ff;
+}
+
+.mark.owner {
+  --accent: #ff9f80;
+}
+
+:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 2px;
+}

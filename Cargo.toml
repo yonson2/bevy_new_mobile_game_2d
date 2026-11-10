@@ -1,0 +1,115 @@
+[package]
+name = "game"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+# The app's identity, in this one place: the name under the icon and on the title screen,
+# and the bundle id (iOS) and application id (Android). `build.rs`, Gradle and the
+# `justfile` read these two lines (`docs/mobile.md`).
+[package.metadata.app]
+name = "New Game"
+id = "com.example.newgame"
+
+[workspace]
+# The Android library; `cargo build` in the root builds only the game.
+members = ["mobile"]
+
+[dependencies]
+# Only the features a 2D game needs. `libm`: `bevy::math::ops`, glam and the transforms
+# use one portable libm, not the platform's, so a seed plays the same on every target.
+bevy = { version = "0.20.1", default-features = false, features = ["2d", "ui", "audio", "libm"] }
+# The seeded RNG streams (`src/rng.rs`).
+fastrand = "2.5.0"
+# The save file (`src/save.rs`).
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1.0.154"
+# Release builds (also the mobile release builds) compile `info!` and lower out.
+tracing = { version = "0.1.44", features = ["max_level_debug", "release_max_level_warn"] }
+
+# Haptics and the share sheet: JNI to `MainActivity`; UIKit. The versions that Bevy's
+# winit already uses.
+[target.'cfg(target_os = "android")'.dependencies]
+jni = "0.21.1"
+
+[target.'cfg(target_os = "ios")'.dependencies]
+objc2 = "0.5.2"
+objc2-foundation = { version = "0.2.2", features = ["NSArray", "NSString", "NSURL"] }
+objc2-ui-kit = { version = "0.2.2", features = [
+    "block2",
+    "UIActivity",
+    "UIActivityViewController",
+    "UIApplication",
+    "UIFeedbackGenerator",
+    "UIImpactFeedbackGenerator",
+    "UINotificationFeedbackGenerator",
+    "UIPopoverPresentationController",
+    "UIPresentationController",
+    "UIResponder",
+    "UISelectionFeedbackGenerator",
+    "UIView",
+    "UIViewController",
+    "UIWindow",
+] }
+# Core Haptics has bindings only in the objc2 0.6 family, which cpal already brings in:
+# renamed, beside winit's 0.5.
+objc2-06 = { package = "objc2", version = "0.6.5" }
+objc2-foundation-03 = { package = "objc2-foundation", version = "0.3.2", default-features = false, features = ["std", "NSArray", "NSError", "NSString"] }
+objc2-core-haptics = { version = "0.3.2", default-features = false, features = [
+    "std",
+    "CHHapticDeviceCapability",
+    "CHHapticEngine",
+    "CHHapticEvent",
+    "CHHapticParameter",
+    "CHHapticPattern",
+    "CHHapticPatternPlayer",
+] }
+
+[features]
+# Dev-only tools (`src/dev_tools.rs`). It turns on no Bevy feature, so it reuses the normal
+# build artifacts.
+dev_tools = []
+# `cargo run --features dev`: the tools, and Bevy linked as a dynamic library for faster
+# builds. Never in a release build: the Xcode and Gradle scripts run a plain
+# `cargo build --release`.
+dev = ["dev_tools", "bevy/dynamic_linking"]
+
+[lints.clippy]
+# Bevy passes system parameters by injection, so a system often takes more than 7.
+too_many_arguments = "allow"
+# A query names many components.
+type_complexity = "allow"
+# `children![]` takes square braces (`clippy.toml`).
+nonstandard_macro_braces = "warn"
+
+[profile.dev]
+opt-level = 1
+
+[profile.dev.package."*"]
+opt-level = 3
+
+# Expensive debug assertions (bevyengine/bevy#14291).
+[profile.dev.package.wgpu-types]
+debug-assertions = false
+
+# objc2 0.5 (winit) checks message return types in debug builds; on macOS 27 the NSArray
+# enumeration check fails ('q' vs 'Q') and the app panics at start.
+[profile.dev.package.objc2]
+debug-assertions = false
+
+# CI: no optimisation, line tables only, so a cold build is fast.
+[profile.ci]
+inherits = "dev"
+opt-level = 0
+debug = "line-tables-only"
+codegen-units = 4
+
+[profile.ci.package."*"]
+opt-level = 0
+
+# Line tables give the store crash reports function names and lines. They stay out of
+# the shipped binaries.
+[profile.release]
+codegen-units = 1
+lto = "thin"
+debug = "line-tables-only"

@@ -1,0 +1,19 @@
+{
+  "provider": "elevenlabs",
+  "endpoint": "/v1/text-to-speech/Vi4XbpZ2tKc5sfJ4Hzkv",
+  "request": {
+    "text": "[excited] Game over!",
+    "model_id": "eleven_v4"
+  },
+  "output_format": "wav_48000",
+  "file": "game-over.wav",
+  "headers": {
+    "character-cost": "9",
+    "request-id": "3bTsdJtbrQOiHVqZBCkq",
+    "history-item-id": "XAcM3j4cpyYF506fFVFL",
+    "content-type": "audio/wav"
+  },
+  "elapsed_s": 3.7,
+  "created": "2026-11-10T19:51:08+0100",
+  "note": "The voice was designed for this line (announcer.json, preview 1) and deleted from the account after it."
+}

@@ -1,0 +1,134 @@
+---
+import Shell from '../layouts/shell.astro';
+import IssueRow from '../components/issue-row.astro';
+import Progress from '../components/progress.astro';
+import { loadBoard } from '../lib/board';
+
+const board = await loadBoard();
+const total = board.issues.length;
+const closed = board.issues.filter((issue) => issue.status === 'done').length;
+---
+
+<Shell title="Issue board">
+  <section>
+    <h1>{closed} of {total} issues done</h1>
+    <Progress value={closed} total={total} label={`${closed} of ${total} issues done`} />
+  </section>
+
+  <section>
+    <h2>Milestones</h2>
+    <ul class="milestones">
+      {
+        board.milestones.map((milestone) => (
+          <li id={milestone.code}>
+            <h3>
+              <b>{milestone.code}</b>
+              {milestone.name}
+              {milestone.done && (
+                <span class="mark" data-status="done">
+                  done
+                </span>
+              )}
+            </h3>
+            <p class="muted count">
+              {milestone.closed}/{milestone.total} issues done
+            </p>
+            <Progress
+              value={milestone.closed}
+              total={milestone.total}
+              label={`${milestone.closed} of ${milestone.total} issues done in ${milestone.code}`}
+            />
+            {milestone.goal && <div class="goal muted" set:html={milestone.goal} />}
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  {
+    board.lists.map((list) => (
+      <section data-status={list.status}>
+        <h2>
+          {list.title}
+          <span class="mark">{list.issues.length}</span>
+        </h2>
+        {list.issues.length === 0 ? (
+          <p class="muted">No issues.</p>
+        ) : (
+          <>
+            <p class="muted">{list.note}</p>
+            <ol class="rows">
+              {list.issues.map((issue) => (
+                <IssueRow issue={issue} byId={board.byId} />
+              ))}
+            </ol>
+          </>
+        )}
+      </section>
+    ))
+  }
+</Shell>
+
+<style>
+  h1 {
+    margin: 8px 0 12px;
+    font-size: 24px;
+  }
+
+  h2 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 32px 0 8px;
+    font-size: 18px;
+  }
+
+  .milestones,
+  .rows {
+    margin: 8px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .milestones {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+  }
+
+  .milestones li,
+  .rows {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--panel);
+  }
+
+  .milestones li {
+    padding: 12px;
+  }
+
+  .rows {
+    overflow: hidden;
+  }
+
+  h3 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    font-size: 16px;
+  }
+
+  .count {
+    margin: 4px 0 8px;
+  }
+
+  .goal :global(p) {
+    margin: 10px 0 0;
+  }
+
+  section > .muted {
+    margin: 0;
+  }
+</style>

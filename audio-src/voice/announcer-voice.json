@@ -1,0 +1,11 @@
+{
+  "provider": "elevenlabs",
+  "endpoint": "/v1/text-to-voice",
+  "request": {
+    "voice_name": "Template announcer",
+    "voice_description": "Cheerful retro arcade announcer robot, bright metallic voice, playful and energetic, light vocoder effect",
+    "generated_voice_id": "Vi4XbpZ2tKc5sfJ4Hzkv"
+  },
+  "voice_id": "Vi4XbpZ2tKc5sfJ4Hzkv",
+  "created": "2026-11-10T19:50:52+0100"
+}

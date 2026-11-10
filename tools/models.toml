@@ -1,0 +1,48 @@
+# The models the asset tools use when a call names none. `docs/research/models.md` has the
+# investigation behind each pick and its date. A model investigation issue updates both
+# files together.
+
+# OpenRouter image presets (`tools/image.py --preset NAME`). Each key is a field of the
+# request body.
+[openrouter.key_art]
+model = "openai/gpt-image-2.6-sunburst"
+quality = "max"
+
+[openrouter.style_ref]
+model = "openai/gpt-image-2.6-sunburst"
+quality = "high"
+aspect_ratio = "1:1"
+
+[openrouter.transparent]
+model = "openai/gpt-image-2.6-sunburst"
+quality = "high"
+background = "transparent"
+output_format = "png"
+
+[openrouter.draft]
+model = "black-forest-labs/flux-3-image-klein"
+resolution = "1K"
+
+# PixelLab roles (`tools/pixellab.py ROLE`): the endpoint for each kind of work.
+[pixellab]
+image = "generate-image-v2"
+image_fast = "create-image-pixen"
+character = "create-character-v3"
+# The owner's pick. PixelLab's own default is "animate-with-text-v3" (`animation_v3`).
+animation = "animate-pixminimax"
+animation_v3 = "animate-with-text-v3"
+rotation = "generate-8-rotations-v3"
+tileset = "create-tileset"
+object = "create-1-direction-object"
+edit = "edit-images-v2"
+inpaint = "inpaint-v3"
+pixelize = "image-to-pixelart"
+pixelize_pro = "image-to-pixelart-pro"
+palette = "reduce-colors"
+
+# ElevenLabs model ids (`tools/audio.py`). The API's own defaults are older models.
+[elevenlabs]
+sfx = "eleven_text_to_sound_v3"
+music = "music_v2_5"
+speech = "eleven_v4"
+voice_design = "eleven_ttv_v3"

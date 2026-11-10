@@ -1,0 +1,18 @@
+{
+  "provider": "elevenlabs",
+  "endpoint": "/v1/music",
+  "request": {
+    "prompt": "Upbeat energetic chiptune arcade action theme, 140 BPM, A minor, driving bass, punchy drums, seamless loop, instrumental only",
+    "model_id": "music_v2_5",
+    "music_length_ms": 30000,
+    "force_instrumental": true,
+    "generation_mode": "loop"
+  },
+  "output_format": "mp3_44100_192",
+  "file": "game.mp3",
+  "headers": {
+    "content-type": "audio/mpeg"
+  },
+  "elapsed_s": 5.6,
+  "created": "2026-11-10T19:46:25+0100"
+}

@@ -1,0 +1,36 @@
+{
+  "provider": "openrouter",
+  "endpoint": "https://openrouter.ai/api/v1/images",
+  "request": {
+    "model": "openai/gpt-image-2.6-sunburst",
+    "quality": "high",
+    "background": "transparent",
+    "output_format": "png",
+    "prompt": "A cute round orange robot with one big cyan eye, two small antennae, short arms and legs, front view, centered, bold flat colours, thick dark outline. Only the robot, isolated on a fully transparent background: no frame, no border, no glow, no ground, no shadow, no text."
+  },
+  "usage": {
+    "prompt_tokens": 69,
+    "completion_tokens": 1887,
+    "total_tokens": 1956,
+    "cost": 0.056955,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.056955,
+      "upstream_inference_prompt_cost": 0.000345,
+      "upstream_inference_completions_cost": 0.05661
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 1887
+    }
+  },
+  "cost_usd": 0.056955,
+  "files": [
+    "concept.png"
+  ],
+  "elapsed_s": 46.9,
+  "created": "2026-11-10T19:48:39+0100"
+}
