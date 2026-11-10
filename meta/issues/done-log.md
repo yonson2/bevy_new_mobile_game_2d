@@ -4,6 +4,7 @@ Every closed issue, newest first. `tools/issues.py` writes this file.
 
 - [010] M0: Issue board (tracker/) (2026-11-10)
 - [009] M0: Seeded game issues: the interview and the milestone spine (2026-11-10)
+- [008] M0: Live docs: AGENTS.md, ARCHITECTURE.md, README.md, docs/ (2026-11-10)
 - [007] M0: The demo's art and sound through the asset tools (2026-11-10)
 - [006] M0: Asset tools and the model investigation (2026-11-10)
 - [005] M0: CI and the checks: fmt, clippy, tests, replay, issues, doc sizes (2026-11-10)

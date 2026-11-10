@@ -18,7 +18,8 @@ shot path="target/shots/title.png":
 replay:
     tools/replay.sh
 
-# Every check that CI runs. Run it before a commit.
+# Every check that CI runs: the format, the trackers, the ledger, the docs, clippy, the
+# tests and the replay. Run it before a commit.
 check:
     cargo fmt --check
     tools/check-repo.sh

@@ -18,7 +18,6 @@ Next ID: 013
 ## Open (priority order)
 
 <!-- issues:open -->
-- [008] M0: Live docs: AGENTS.md, ARCHITECTURE.md, README.md, docs/
 - [011] M0: Trial: a clone runs the interview
 - [012] M0: Close: consolidation
 <!-- /issues:open -->
