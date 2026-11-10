@@ -4,8 +4,9 @@ version = "0.1.0"
 edition = "2024"
 publish = false
 
-# The app's identity on the phones: `just` passes it to Xcode and Gradle
-# (`docs/mobile.md`). `just rename` sets it with the package name.
+# The app's identity, in this one place: the name under the icon and on the title screen,
+# and the bundle id (iOS) and application id (Android). `build.rs`, Gradle and the
+# `justfile` read these two lines (`docs/mobile.md`).
 [package.metadata.app]
 name = "New Game"
 id = "com.example.newgame"

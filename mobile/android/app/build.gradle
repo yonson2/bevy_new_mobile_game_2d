@@ -1,0 +1,75 @@
+plugins {
+    alias(libs.plugins.android.application)
+}
+
+// The app's version, name and id come from the root Cargo.toml: the version line, and
+// `name` and `id` under [package.metadata.app]. versionCode = major*10000 + minor*100 + patch.
+def cargo = file('../../../Cargo.toml').readLines()
+def cargoVersion = cargo.find { it.startsWith('version = ') }.split('"')[1]
+def (major, minor, patch) = cargoVersion.tokenize('.').collect { it.toInteger() }
+def app = cargo.drop(cargo.indexOf('[package.metadata.app]') + 1)
+def appName = app.find { it.startsWith('name = ') }.split('"')[1]
+def appId = app.find { it.startsWith('id = ') }.split('"')[1]
+
+android {
+    // The Java package, the same for every game; the application id is the app's identity.
+    namespace 'mobile.game'
+    compileSdk 36
+    // The NDK that cargo-ndk builds with: Gradle strips the Rust library with it and keeps
+    // its symbols for Play.
+    ndkVersion '26.1.10909125'
+
+    defaultConfig {
+        applicationId appId
+        manifestPlaceholders = [appName: appName]
+        minSdk 31
+        targetSdk 36
+        versionCode major * 10000 + minor * 100 + patch
+        versionName cargoVersion
+        ndk {
+            abiFilters 'arm64-v8a'
+        }
+    }
+    signingConfigs {
+        release {
+            // The upload key: `just android-release` reads it from the environment or `.env`.
+            def keystore = System.getenv('ANDROID_UPLOAD_KEYSTORE')
+            if (keystore) {
+                storeFile file(keystore)
+                storePassword System.getenv('ANDROID_UPLOAD_PASSWORD')
+                keyAlias 'upload'
+                keyPassword System.getenv('ANDROID_UPLOAD_PASSWORD')
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            // The Rust library's function names go into the bundle for Play's crash reports;
+            // FULL would add hundreds of MB of line tables.
+            ndk {
+                debugSymbolLevel 'SYMBOL_TABLE'
+            }
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    buildFeatures {
+        prefab true
+    }
+    sourceSets {
+        main {
+            // The game's assets ship inside the APK; `just android` puts the Rust
+            // library in `jniLibs` (gitignored).
+            assets.srcDirs += files('../../../assets')
+        }
+    }
+}
+
+dependencies {
+    implementation libs.appcompat
+    implementation libs.games.activity
+}

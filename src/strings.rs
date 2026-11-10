@@ -28,7 +28,7 @@ pub struct Strings {
 }
 
 const ENGLISH: Strings = Strings {
-    game_name: "New Game",
+    game_name: env!("APP_NAME"),
     loading: "Loading...",
     play: "Play",
     settings: "Settings",

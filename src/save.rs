@@ -64,7 +64,7 @@ fn data_dir() -> Option<PathBuf> {
     let home = PathBuf::from(std::env::var_os("HOME")?);
     Some(
         home.join("Library/Application Support")
-            .join(env!("CARGO_PKG_NAME")),
+            .join(env!("APP_ID")),
     )
 }
 
@@ -73,7 +73,7 @@ fn data_dir() -> Option<PathBuf> {
     let data = std::env::var_os("XDG_DATA_HOME")
         .map(PathBuf::from)
         .or_else(|| Some(PathBuf::from(std::env::var_os("HOME")?).join(".local/share")))?;
-    Some(data.join(env!("CARGO_PKG_NAME")))
+    Some(data.join(env!("APP_ID")))
 }
 
 fn load(path: &Path) -> Save {
