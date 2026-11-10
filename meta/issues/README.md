@@ -19,7 +19,6 @@ Next ID: 013
 
 <!-- issues:open -->
 - [008] M0: Live docs: AGENTS.md, ARCHITECTURE.md, README.md, docs/
-- [009] M0: Seeded game issues: the interview and the milestone spine
 - [010] M0: Issue board (tracker/)
 - [011] M0: Trial: a clone runs the interview
 - [012] M0: Close: consolidation
