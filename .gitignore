@@ -1,0 +1,23 @@
+# Local secrets for asset generation and store uploads (`.env.example` lists them)
+.env
+
+# Rust build output
+/target
+
+# Node dependencies and Python caches
+node_modules/
+__pycache__/
+
+.DS_Store
+
+# Raw generator downloads and unpicked takes; picks move to art-src/ and audio-src/
+art-src/raw/
+audio-src/takes/
+
+# Android build output and IDE state
+**/jniLibs/**/*.so
+mobile/android/**/build/
+.gradle/
+.idea/
+.cxx/
+local.properties
