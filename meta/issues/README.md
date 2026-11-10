@@ -18,8 +18,7 @@ Next ID: 013
 ## Open (priority order)
 
 <!-- issues:open -->
-- [002] M0: Skeleton: the Bevy app, screens, theme, input, save, phone platform
-- [003] M0: Demo game and dev harness: shots and the replay check
+- [003] M0: Dev harness: shots and the replay check
 - [004] M0: Phones: iOS and Android projects, the app's identity in one place
 - [005] M0: CI and the checks: fmt, clippy, tests, replay, issues, doc sizes
 - [006] M0: Asset tools and the model investigation

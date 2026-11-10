@@ -1,0 +1,14 @@
+[package]
+name = "mobile"
+# The app version is the root package version.
+version = "0.0.0"
+edition = "2024"
+publish = false
+description = "The game as a library for the Android project"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+bevy = { version = "0.20.1", default-features = false, features = ["android-game-activity"] }
+game = { path = ".." }
