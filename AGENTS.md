@@ -8,8 +8,9 @@ detail goes into `docs/` (`tools/check-docs.py` holds the size limits).
 ## Start here
 
 1. Run `just issue check` and read `issues/README.md`: Active first, then the top of Open.
-2. If `issues/open/001-gate-the-game.md` exists, this clone is still the template. Start
-   that issue: interview the owner, then do [002] and [003]. Do not write game code first.
+2. If `docs/game.md` says "Not written yet", this clone is still the template. Start
+   issue [001], `Gate: the game`: interview the owner, then do [002] and [003]. Do not
+   write game code first.
 3. Otherwise take the active issue, or the first open issue whose `Depends on` are done.
    Read `docs/game.md` (what the game is) and `ARCHITECTURE.md` (how the code is built).
 
@@ -18,8 +19,11 @@ detail goes into `docs/` (`tools/check-docs.py` holds the size limits).
 1. **One issue, one commit.** `just issue start N`, the work, the issue's Notes,
    `just issue close N`, then one commit `[NNN] short summary`. Stage explicit paths, not
    `git add -A`. No AI attribution in a commit (no `Co-Authored-By`, no "generated with").
-2. **The owner pushes.** Never `git push`. Work on the milestone's branch (`m1`, `m2`..);
-   the milestone's consolidation merges it into `main` on this machine.
+   An issue that must stop before it is done (it waits for the owner, the session ends)
+   stays active: write its Notes and commit `[NNN] wip: what is done`.
+2. **The owner pushes.** Never `git push`. Work on the milestone's branch (`m0`, `m1`..):
+   the milestone's first issue starts it, and its last issue merges it into `main` on this
+   machine.
 3. **`just check` passes before every commit.**
 4. **Milestones** start with their intake and end with their consolidation
    (`issues/README.md`, "Rules"). **A gate is the owner's decision**: prepare it, ask,

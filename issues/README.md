@@ -2,19 +2,25 @@
 
 The game's work log: what was done, what is in work and what comes next. One file for each
 issue, in `open/`, `active/` or `done/`. `tools/issues.py` (`just issue ..`) makes, moves
-and checks the files and writes the lists below. Do not edit a list between its markers,
-but the order of the Open list is yours: move its lines by hand.
+and checks the files and writes the lists below. Two things between the markers are
+yours: the order of the Open list (move its lines), and the Milestones list (add a line
+`- [ ] M4 Name` for a new milestone, and its goal under "Milestone goals"; the tool ticks
+it). Leave the rest to the tool.
 
 ## Rules
 
 - **One issue, one commit.** Start it (`just issue start N`), do the work, write its
-  Notes, close it (`just issue close N`), commit `[NNN] short summary`.
+  Notes, close it (`just issue close N`), commit `[NNN] short summary`. An issue that
+  must stop before it is done stays active, with a commit `[NNN] wip: what is done`.
 - **Every milestone starts with its intake.** The intake reads the milestone's goal and
   the design, files the issues that reach the goal, orders them, and asks the owner what
-  only the owner can answer. No other issue of a milestone starts before its intake is done.
+  only the owner can answer. No other issue of a milestone starts before its intake is
+  done. It starts the milestone's branch (`git switch -c m1`), and it depends on the
+  consolidation of the milestone before it.
 - **Every milestone ends with its consolidation.** A pass over what the milestone added:
   remove duplicates, apply the project's patterns, make the code easy to read, measure the
-  performance, bring the docs up to date. It adds no feature.
+  performance, bring the docs up to date. It adds no feature. It merges the branch into
+  `main`. M0 is the short case: [001] is its intake and [003] is its close.
 - **A gate** (title `Gate: ..`) is a decision that only the owner can make. The agent
   prepares it (options, a review page, a build on a phone) and waits. It does not guess.
 - **Owner-run** (`**Owner-run:** yes`) is a step that only the owner can do: a real phone,
@@ -39,7 +45,7 @@ Next ID: 017
 <!-- issues:open -->
 - [001] M0: Gate: the game; **gate**
 - [002] M0: Make the template yours
-- [003] M0: Prove the builds and the tools on this machine; **owner-run**
+- [003] M0: Prove the builds and the tools on this machine
 - [004] M1: Intake: M1 Greybox loop
 - [005] M1: Gate: the loop is fun on a phone; **gate**; **owner-run**
 - [006] M1: Consolidation: M1

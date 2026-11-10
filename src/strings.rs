@@ -45,7 +45,7 @@ const ENGLISH: Strings = Strings {
     best: "Best",
     play_again: "Play again",
     share: "Share",
-    share_text: "I scored {} in New Game!",
+    share_text: concat!("I scored {} in ", env!("APP_NAME"), "!"),
     hint: "Drag to move",
 };
 

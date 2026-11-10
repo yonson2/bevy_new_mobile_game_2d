@@ -18,7 +18,6 @@ Next ID: 013
 ## Open (priority order)
 
 <!-- issues:open -->
-- [011] M0: Trial: a clone runs the interview
 - [012] M0: Close: consolidation
 <!-- /issues:open -->
 

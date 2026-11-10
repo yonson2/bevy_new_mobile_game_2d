@@ -51,7 +51,7 @@ second, without the renderer. Each run logs `GAME_STATE step <n>: <hash> (<summa
 The hash must be the same at the three frame rates and equal its line in
 `tools/replay-hashes.txt`.
 
-- The hash comes from `state_hash` in the game's module: it must cover everything that
+- The hash comes from `state_hash` (in `src/demo/` until M1 replaces the demo): it must cover everything that
   gameplay changes (positions by their bits, counters, the RNG state).
 - A change to the rules moves the hashes. Update `tools/replay-hashes.txt` in the same
   commit and say why in the issue. A change that should not move them, and does, is a bug.

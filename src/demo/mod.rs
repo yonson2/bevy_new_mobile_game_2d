@@ -2,7 +2,7 @@
 //! point. It is here so the template's checks have something to check (the shots, the
 //! replay, the phone builds), and to show each pattern once: assets on the loading
 //! screen, seeded draws, gameplay in `FixedUpdate`, sounds and haptics as messages, UI in
-//! BSN. A new game deletes this folder (`issues/`, the first milestone).
+//! BSN. M1 replaces this folder with the game (`issues/`).
 
 mod enemies;
 mod hud;

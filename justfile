@@ -30,8 +30,9 @@ check:
 
 # The issue tracker: `just issue new "Title" -m M1`, `just issue start 12`,
 # `just issue close 12`, `just issue check`.
+[positional-arguments]
 issue *args:
-    python3 tools/issues.py {{args}}
+    python3 tools/issues.py "$@"
 
 # The app's identity and version: `Cargo.toml` is the one place (`docs/mobile.md`).
 app_name := `sed -n '/^\[package.metadata.app\]/,/^\[/s/^name = "\(.*\)"$/\1/p' Cargo.toml`
@@ -41,8 +42,9 @@ version := `grep -m1 '^version = ' Cargo.toml | cut -d'"' -f2`
 build_number := `grep -m1 '^version = ' Cargo.toml | cut -d'"' -f2 | awk -F. '{print $1 * 10000 + $2 * 100 + $3}'`
 
 # The app icon in both phone projects, from art-src/icon/icon.png.
+[positional-arguments]
 icon *args:
-    python3 tools/icon.py {{args}}
+    python3 tools/icon.py "$@"
 
 android_sdk := env_var_or_default("ANDROID_HOME", home_directory() / "Library/Android/sdk")
 # Gradle runs on Android Studio's JDK; a newer system JDK can be too new for it.

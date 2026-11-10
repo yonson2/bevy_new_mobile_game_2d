@@ -12,8 +12,9 @@ A loop that is not fun in greybox does not become fun with art. This is the chea
 moment to change the design or to stop.
 
 ## Approach
-1. The agent builds the game for the owner's phones and gives a short list of what to
-   try and what to watch for.
+1. The agent builds the game for the owner's phones (`just ios-device`,
+   `just android-run`; the first time, the owner puts `IOS_TEAM` in `.env` and pairs the
+   phones, `docs/mobile.md`) and gives a short list of what to try and what to watch for.
 2. The owner plays several sessions on a phone, not on the desktop.
 3. The owner answers: is it fun, what is the best moment, what is the worst, what is
    confusing. The agent records the answers and files the changes as issues.

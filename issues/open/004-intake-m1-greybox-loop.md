@@ -2,7 +2,7 @@
 
 **Status:** open
 **Milestone:** M1
-**Depends on:** [001]
+**Depends on:** [003]
 **Created:** 2026-11-10
 **Closed:** -
 
@@ -15,7 +15,7 @@ The intake steps, as for every milestone:
 1. Read the milestone's goal (`issues/README.md`) and `docs/game.md`.
 2. File the issues that reach the goal: small, each with a runnable Verification. For
    M1: the game's states and data, the input, the loop's rules in `FixedUpdate` with
-   seeded draws, the HUD, a first tuning pass, the replay scene for the new game
+   seeded draws, the HUD, a first tuning pass, the replay scene for the game's own loop
    (`tools/replay-hashes.txt`), and the removal of `src/demo/`.
 3. Map each clause of the goal to its issues in Notes. File what is missing.
 4. Ask the owner what only the owner can answer; record the answers.

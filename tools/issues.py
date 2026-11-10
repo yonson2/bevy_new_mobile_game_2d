@@ -151,6 +151,13 @@ def check(root):
             for d in issue.depends
             if d not in ids
         ]
+    listed = re.findall(r"^- \[[ x]\] (M\d+) ", (root / "README.md").read_text(), re.M)
+    placeholder = (root / "TEMPLATE.md").read_text().split("## Problem\n")[1].split("\n")[0]
+    for issue in issues:
+        if issue.milestone not in listed:
+            errors.append(f"{issue.path}: {issue.milestone} is not in README.md's Milestones list")
+        if issue.status != "open" and placeholder in issue.path.read_text():
+            errors.append(f"{issue.path}: still has the template's text")
     if not errors:
         readme, log = render(root, issues)
         if readme != (root / "README.md").read_text():

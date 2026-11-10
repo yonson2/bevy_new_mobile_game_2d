@@ -11,7 +11,11 @@ This repository is a template with a demo in it. Nobody has said yet what the ga
 Everything after this issue depends on the answers.
 
 ## Approach
-The agent interviews the owner. One topic at a time; for each, give two or three
+First: write the output of `git log -1 --format=%H` and of `git remote get-url origin`
+into Notes (the template's commit and repository; [002] needs them), and start the branch:
+`git switch -c m0`.
+
+Then the agent interviews the owner. One topic at a time; for each, give two or three
 concrete options and a recommendation, then record the answer in Notes with its date.
 Do not start [002] until every topic has an answer or an explicit "later".
 
@@ -36,9 +40,13 @@ Do not start [002] until every topic has an answer or an explicit "later".
 
 Then write the result:
 - `docs/game.md`: the pitch, the loop, the pillars, the scope, the answers.
-- The milestones: split M3 Content into M3 to M7 as the scope needs, with a goal for each
-  in `issues/README.md`. Each new milestone gets its intake issue first and its
-  consolidation issue last (`just issue new "Intake: M4 .." -m M4`).
+- The milestones: M3 to M7 are for the content, as few as the scope needs. For each one
+  that the game uses, M3 too: its line in the Milestones list and its goal in
+  `issues/README.md`, an intake issue and a consolidation issue
+  (`just issue new "Intake: M4 Daily run" -m M4 -d 018`). An intake depends on the
+  consolidation of the milestone before it: M3's on [011], and M8's intake [012] on the
+  last content milestone's consolidation (edit its `Depends on` line). Put the new issues
+  in their place in the Open list.
 - The owner reads `docs/game.md` and the milestone goals, and approves them.
 
 ## Verification

@@ -11,8 +11,9 @@ needs and what an agent needs to work alone between your decisions.
    (`.env.example`), or export them in your shell.
 2. Start your agent in the folder. `AGENTS.md` sends it to issue [001], `Gate: the game`:
    it interviews you (the pitch, the name, pixel art or not, the platforms, the scope).
-3. The agent then makes the repository the game's ([002]), proves the builds and the
-   tools ([003]), files the milestones and their issues, and starts the first one.
+3. The agent writes the design and the milestones from your answers, makes the
+   repository the game's ([002]), proves the builds and the tools ([003]), and starts the
+   first milestone with its intake.
 
 You decide at the gates, play the builds on your phone, judge art and sound on review
 pages, and push.
