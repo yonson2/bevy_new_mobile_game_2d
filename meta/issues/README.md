@@ -18,7 +18,6 @@ Next ID: 013
 ## Open (priority order)
 
 <!-- issues:open -->
-- [005] M0: CI and the checks: fmt, clippy, tests, replay, issues, doc sizes
 - [006] M0: Asset tools and the model investigation
 - [007] M0: The demo's art and sound through the asset tools
 - [008] M0: Live docs: AGENTS.md, ARCHITECTURE.md, README.md, docs/

@@ -18,6 +18,15 @@ shot path="target/shots/title.png":
 replay:
     tools/replay.sh
 
+# Every check that CI runs. Run it before a commit.
+check:
+    cargo fmt --check
+    tools/check-repo.sh
+    cargo clippy --all-targets --features dev_tools -- -D warnings
+    cargo clippy --all-targets -- -D warnings
+    cargo test
+    tools/replay.sh
+
 # The issue tracker: `just issue new "Title" -m M1`, `just issue start 12`,
 # `just issue close 12`, `just issue check`.
 issue *args:
