@@ -18,13 +18,12 @@ Next ID: 013
 ## Open (priority order)
 
 <!-- issues:open -->
-- [012] M0: Close: consolidation
 <!-- /issues:open -->
 
 ## Milestones
 
 <!-- issues:milestones -->
-- [ ] M0 Template v1
+- [x] M0 Template v1
 - [ ] M1 Upkeep
 <!-- /issues:milestones -->
 

@@ -2,6 +2,7 @@
 
 Every closed issue, newest first. `tools/issues.py` writes this file.
 
+- [012] M0: Close: consolidation (2026-11-10)
 - [011] M0: Trial: a clone runs the interview (2026-11-10)
 - [010] M0: Issue board (tracker/) (2026-11-10)
 - [009] M0: Seeded game issues: the interview and the milestone spine (2026-11-10)

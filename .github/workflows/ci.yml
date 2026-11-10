@@ -1,5 +1,5 @@
-# The checks of `just check`, in the fast `ci` profile: the format, the trackers, clippy
-# with and without the dev tools, the tests and the replay check.
+# The checks of `just check`, in the fast `ci` profile: the format, the trackers, the
+# ledger, the docs, clippy with and without the dev tools, the tests and the replay check.
 name: CI
 
 on:

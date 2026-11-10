@@ -13,8 +13,6 @@ use bevy::{
     window::WindowEvent,
 };
 
-use serde::Serialize;
-
 use crate::{AppSystems, canvas::ScreenCamera, theme::interaction::InteractionPalette};
 
 pub(super) fn plugin(app: &mut App) {
@@ -63,8 +61,7 @@ pub enum Gesture {
     },
 }
 
-#[derive(Clone, Copy, PartialEq, Eq, Debug, Serialize)]
-#[serde(rename_all = "snake_case")]
+#[derive(Clone, Copy, PartialEq, Eq, Debug)]
 pub enum Swipe {
     Left,
     Right,
