@@ -7,7 +7,7 @@ Same format and same tool as a game's tracker (`issues/README.md` has the rules)
 `python3 tools/issues.py --dir meta/issues <command>`.
 
 <!-- issues:next -->
-Next ID: 013
+Next ID: 014
 <!-- /issues:next -->
 
 ## Active
@@ -24,7 +24,7 @@ Next ID: 013
 
 <!-- issues:milestones -->
 - [x] M0 Template v1
-- [ ] M1 Upkeep
+- [x] M1 Upkeep
 <!-- /issues:milestones -->
 
 ## Milestone goals

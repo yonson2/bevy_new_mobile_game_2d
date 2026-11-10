@@ -7,8 +7,15 @@ needs and what an agent needs to work alone between your decisions.
 
 ## Start a game
 
-1. Clone this repository under the game's name. Put your keys in `.env`
-   (`.env.example`), or export them in your shell.
+1. Make the game's repository from this template, then put your keys in `.env`
+   (`.env.example`) or export them in your shell:
+
+   ```sh
+   gh repo create my-game --template yonson2/bevy_new_mobile_game_2d --private --clone
+   ```
+
+   "Use this template" on GitHub does the same. The game starts with one commit and no
+   link to the template's history: it owns its copy.
 2. Start your agent in the folder. `AGENTS.md` sends it to issue [001], `Gate: the game`:
    it interviews you (the pitch, the name, pixel art or not, the platforms, the scope).
 3. The agent writes the design and the milestones from your answers, makes the
@@ -65,7 +72,16 @@ just board                         # the tracker as a web page
 
 ## Licence
 
-The template's own code has no licence file yet: its owner decides. Third-party parts
-keep theirs: Departure Mono (SIL OFL 1.1, `art-src/fonts/DepartureMono-OFL.txt`), the
-Gradle wrapper (Apache 2.0). The demo's art and sound are generated; their terms are in
-`art-src/ledger.md` and `audio-src/ledger.md`.
+The code and the docs: MIT No Attribution (`LICENSE`). A game made from the template
+owes no notice and no credit.
+
+Not under that licence:
+
+- **The demo's art and sound** (`assets/images`, `assets/audio`, `art-src/sprites`,
+  `art-src/icon`, `audio-src`, the app icons under `mobile/`). They are generated, they
+  show the asset pipeline, and they are not licensed for reuse. M1 and M2 replace them
+  with the game's own. Their terms are in `art-src/ledger.md` and `audio-src/ledger.md`.
+- Departure Mono: SIL OFL 1.1 (`art-src/fonts/DepartureMono-OFL.txt`).
+- The Gradle wrapper: Apache 2.0.
+
+The layout and parts of the code come from bevy_new_2d (CC0-1.0, MIT or Apache-2.0).

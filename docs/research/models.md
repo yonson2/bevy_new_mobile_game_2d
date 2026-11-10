@@ -92,8 +92,12 @@ REST v2, `https://api.pixellab.ai/v2`. Costs are in generations (about $0.008 ea
   (2026-10-09): every self-serve plan excludes a "Studio Game"; an indie game (revenue
   under $500,000, publisher under $1,000,000 a year) is allowed. Streaming distribution
   needs the Creator plan or higher.
-- OpenRouter and OpenAI terms for image output: not read in this investigation. The owner
-  confirms them before a generated image ships.
+- OpenRouter and OpenAI terms for image output: not read in this investigation. The
+  owner confirmed them on 2026-11-10 for the demo's images in a public repository. A
+  game's owner confirms them before a generated image ships.
+- Use is not the same as a licence for others: no provider's terms were read for giving
+  generated files to other people for reuse. The template's `LICENSE` leaves the demo's
+  assets out for that reason.
 
 ### Not verified
 

@@ -11,11 +11,7 @@ This repository is a template with a demo in it. Nobody has said yet what the ga
 Everything after this issue depends on the answers.
 
 ## Approach
-First: write the output of `git log -1 --format=%H` and of `git remote get-url origin`
-into Notes (the template's commit and repository; [002] needs them), and start the branch:
-`git switch -c m0`.
-
-Then the agent interviews the owner. One topic at a time; for each, give two or three
+First start the branch: `git switch -c m0`. Then the agent interviews the owner. One topic at a time; for each, give two or three
 concrete options and a recommendation, then record the answer in Notes with its date.
 Do not start [002] until every topic has an answer or an explicit "later".
 
