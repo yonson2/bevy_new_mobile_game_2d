@@ -20,6 +20,9 @@ id = "com.example.newgame"   # the bundle id (iOS) and the application id (Andro
   and no team, so **build with `just`**, not from Xcode's window.
 - The version is the `Cargo.toml` version on both. The build number is
   major x 10000 + minor x 100 + patch.
+- `just issue close N` raises the version (`issues/README.md`, "Rules"): do not edit it
+  by hand. 1.0.0 is the store release. A milestone with 100 issues or more would repeat
+  a build number: split it.
 
 Do not rename the package `game` or the library `mobile`: scripts and JNI names use them.
 

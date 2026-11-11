@@ -21,6 +21,12 @@ it). Leave the rest to the tool.
   remove duplicates, apply the project's patterns, make the code easy to read, measure the
   performance, bring the docs up to date. It adds no feature. It merges the branch into
   `main`. M0 is the short case: [001] is its intake and [003] is its close.
+- **Closing an issue raises the version** in `Cargo.toml` (and `Cargo.lock`); the phone
+  builds read it there. An issue raises the patch. The issue that completes its milestone
+  raises the minor and sets the patch to 0. The issue that completes the milestone named
+  `Release` in the list below makes a 0.x version 1.0.0: the build that goes to the
+  stores. After that an issue is a patch and a milestone is a minor again; a 2.0.0 is the
+  owner's decision, by hand. A `wip` commit does not change the version.
 - **A gate** (title `Gate: ..`) is a decision that only the owner can make. The agent
   prepares it (options, a review page, a build on a phone) and waits. It does not guess.
 - **Owner-run** (`**Owner-run:** yes`) is a step that only the owner can do: a real phone,

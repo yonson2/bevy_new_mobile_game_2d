@@ -43,6 +43,10 @@ detail goes into `docs/` (`tools/check-docs.py` holds the size limits).
 9. **Small and plain.** The least code that does the issue. No feature, option or
    abstraction that the issue did not ask for. Match the patterns that are already here.
 10. **Never start Docker.** A container runs with Podman.
+11. **The tracker sets the version.** `just issue close N` raises the version in
+    `Cargo.toml`, and the apps follow it: the patch for an issue, the minor for the issue
+    that completes a milestone, 1.0.0 for the store release. Do not edit it by hand, and
+    commit `Cargo.toml` and `Cargo.lock` with the issue.
 
 ## Commands
 

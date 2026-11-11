@@ -3,7 +3,8 @@
 
   issues.py new "Title" -m M1 [-d 003,005] [--gate] [--owner-run] [--top]
   issues.py start NNN          open/ -> active/
-  issues.py close NNN          -> done/, sets Closed, adds the done-log line
+  issues.py close NNN          -> done/, sets Closed, adds the done-log line, raises
+                               the version in Cargo.toml (the game's tracker only)
   issues.py sync               write the index and the done log again
   issues.py check              fail on a bad issue file or an index out of date (CI)
 
@@ -193,6 +194,30 @@ def move(root, issue, status):
     print(target)
 
 
+def bump(root, issue):
+    """Raises the version in Cargo.toml and Cargo.lock for a closed issue: the patch;
+    the minor when the close completes its milestone; 1.0.0 when that milestone is the
+    one that README.md names `Release` and the version is still 0.x."""
+    issues = load(root)
+    done = {i.milestone for i in issues} - {i.milestone for i in issues if i.status != "done"}
+    release = re.search(r"^- \[[ x]\] (M\d+) Release$", (root / "README.md").read_text(), re.M)
+    cargo = pathlib.Path("Cargo.toml")
+    old = re.search(r'^version = "(\d+)\.(\d+)\.(\d+)"$', cargo.read_text(), re.M)
+    major, minor, patch = (int(n) for n in old.groups())
+    if issue.milestone not in done:
+        patch += 1
+    elif major == 0 and release and issue.milestone == release.group(1):
+        major, minor, patch = 1, 0, 0
+    else:
+        minor, patch = minor + 1, 0
+    line = f'version = "{major}.{minor}.{patch}"'
+    cargo.write_text(cargo.read_text().replace(old.group(0), line, 1))
+    lock = pathlib.Path("Cargo.lock")
+    name = 'name = "game"\n'
+    lock.write_text(lock.read_text().replace(name + old.group(0), name + line, 1))
+    print(f"Cargo.toml: {line}")
+
+
 def new(root, args):
     issues = load(root)
     issue_id = f"{max((int(i.id) for i in issues), default=0) + 1:03}"
@@ -250,6 +275,8 @@ def main():
         issue = find(root, args.id, ("open", "active"))
         issue.set_field("Closed", datetime.date.today().isoformat())
         move(root, issue, "done")
+        if args.dir == "issues":
+            bump(root, issue)
     elif args.command == "sync":
         sync(root)
     else:

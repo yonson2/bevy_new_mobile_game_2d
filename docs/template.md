@@ -3,7 +3,7 @@
 This repository is the template itself.
 
 - Repository: https://github.com/yonson2/bevy_new_mobile_game_2d
-- Version: 2026.11.0
+- Version: 2026.11.1
 
 In a game made from it, issue [002] replaces the rest of this file with the game's
 origin and keeps the two lines above. A game made with "Use this template" has no git
@@ -21,4 +21,4 @@ The template's own work log is `meta/issues/` (`python3 tools/issues.py --dir me
 - what the games learned: a pattern or a fix that three games needed belongs here.
 
 A change that a game would want raises the version (year.month.count) in the same
-commit. The owner tags the merge on `main` (`git tag v2026.11.0`) and pushes the tag.
+commit. The owner tags the merge on `main` (`git tag v2026.11.1`) and pushes the tag.

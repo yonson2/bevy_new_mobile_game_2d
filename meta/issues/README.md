@@ -7,7 +7,7 @@ Same format and same tool as a game's tracker (`issues/README.md` has the rules)
 `python3 tools/issues.py --dir meta/issues <command>`.
 
 <!-- issues:next -->
-Next ID: 014
+Next ID: 015
 <!-- /issues:next -->
 
 ## Active

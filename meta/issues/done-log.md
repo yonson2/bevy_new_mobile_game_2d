@@ -2,6 +2,7 @@
 
 Every closed issue, newest first. `tools/issues.py` writes this file.
 
+- [014] M1: Version rule: an issue raises the patch, a milestone the minor, the release is 1.0.0 (2026-11-11)
 - [013] M1: Public repository: licence, version stamp, GitHub template flow (2026-11-10)
 - [012] M0: Close: consolidation (2026-11-10)
 - [011] M0: Trial: a clone runs the interview (2026-11-10)
